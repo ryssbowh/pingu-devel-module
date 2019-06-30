@@ -1,0 +1,16 @@
+{
+    "name": "Devel",
+    "alias": "devel",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Pingu\\Devel\\Providers\\DevelServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "functions.php"
+    ],
+    "requires": []
+}
