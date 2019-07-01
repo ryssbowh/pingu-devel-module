@@ -19,20 +19,28 @@ class DevelDatabaseSeeder extends Seeder
     {
         $item = MenuItem::findByName('admin-menu.devel');
         if(!$item){
-            $perm1 = Permission::findOrCreate(['name' => 'view routes', 'section' => 'Devel']);
+            $perm = Permission::findOrCreate(['name' => 'view routes', 'section' => 'Devel']);
             $menu = Menu::findByName('admin-menu');
             $item = MenuItem::create([
                 'name' => 'Devel',
                 'active' => 1,
-                'deletable' => 1
+                'deletable' => 0
             ], $menu);
 
             $item2 = MenuItem::create([
                 'name' => 'Routes',
                 'deletable' => 0,
                 'active' => 1,
-                'permission_id' => $perm1->id,
+                'permission_id' => $perm->id,
                 'url' => 'devel.admin.routes'
+            ], $menu, $item);
+            $perm = Permission::findByName('put site in maintenance mode');
+            $item2 = MenuItem::create([
+                'name' => 'Maintenance',
+                'deletable' => 0,
+                'active' => 1,
+                'permission_id' => $perm->id,
+                'url' => 'devel.admin.maintenance'
             ], $menu, $item);
         }
     }

@@ -14,3 +14,12 @@
 Route::get('devel/routes', ['uses' => 'DevelRoutesController@listRoutes'])
 	->middleware('can:view routes')
 	->name('devel.admin.routes');
+Route::get('devel/maintenance', ['uses' => 'DevelMaintenanceController@index'])
+	->middleware('can:put site in maintenance mode')
+	->name('devel.admin.maintenance');
+Route::post('devel/maintenance/on', ['uses' => 'DevelMaintenanceController@maintenanceModeOn'])
+	->middleware('can:put site in maintenance mode')
+	->name('devel.admin.maintenance.on');
+Route::post('devel/maintenance/off', ['uses' => 'DevelMaintenanceController@maintenanceModeOff'])
+	->middleware('can:put site in maintenance mode')
+	->name('devel.admin.maintenance.off');
