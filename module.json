@@ -1,9 +1,9 @@
 {
     "name": "Devel",
     "alias": "devel",
-    "description": "",
+    "description": "Development helpers",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 10,
     "providers": [
         "Pingu\\Devel\\Providers\\DevelServiceProvider"
