@@ -3,7 +3,6 @@
     "alias": "devel",
     "description": "Development helpers",
     "keywords": [],
-    "active": 0,
     "order": 10,
     "providers": [
         "Pingu\\Devel\\Providers\\DevelServiceProvider"
