@@ -4,6 +4,7 @@
     "description": "Development helpers",
     "keywords": [],
     "order": 10,
+    "core": 0,
     "providers": [
         "Pingu\\Devel\\Providers\\DevelServiceProvider"
     ],
