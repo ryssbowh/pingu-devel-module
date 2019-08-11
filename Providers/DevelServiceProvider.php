@@ -32,7 +32,6 @@ class DevelServiceProvider extends ModuleServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'devel');
         $this->registerFactories();
         // $this->registerAssets();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**

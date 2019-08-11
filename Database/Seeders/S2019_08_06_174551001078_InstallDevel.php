@@ -1,14 +1,12 @@
 <?php
 
-namespace Pingu\Devel\Database\Seeders;
-
 use Pingu\Core\Seeding\DisableForeignKeysTrait;
 use Pingu\Core\Seeding\MigratableSeeder;
 use Pingu\Menu\Entities\Menu;
 use Pingu\Menu\Entities\MenuItem;
 use Pingu\Permissions\Entities\Permission;
 
-class S2019_08_06_174551001078_Install extends MigratableSeeder
+class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
 {
     use DisableForeignKeysTrait;
 
@@ -32,7 +30,7 @@ class S2019_08_06_174551001078_Install extends MigratableSeeder
             'permission_id' => $perm->id,
             'url' => 'devel.admin.routes'
         ], $menu, $item);
-        $perm = Permission::findByName('put site in maintenance mode');
+        $perm = Permission::findOrCreate(['name' => 'put site in maintenance mode', 'section' => 'Devel']);
         $item2 = MenuItem::create([
             'name' => 'Maintenance',
             'deletable' => 0,
@@ -59,7 +57,7 @@ class S2019_08_06_174551001078_Install extends MigratableSeeder
         if($perm = Permission::where('name', 'view routes')->first()){
             $perm->delete();
         }
-        if($perm = Permission::where('put site in maintenance mode', 'view activity')->first()){
+        if($perm = Permission::where('name', 'put site in maintenance mode')->first()){
             $perm->delete();
         }
     }
