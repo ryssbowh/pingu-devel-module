@@ -16,7 +16,7 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
     public function run(): void
     {
         $perm = Permission::findOrCreate(['name' => 'view routes', 'section' => 'Devel']);
-        $menu = Menu::findByName('admin-menu');
+        $menu = Menu::findByMachineName('admin-menu');
         $item = MenuItem::create([
             'name' => 'Devel',
             'active' => 1,
