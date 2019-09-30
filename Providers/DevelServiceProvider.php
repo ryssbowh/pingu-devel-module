@@ -14,11 +14,6 @@ class DevelServiceProvider extends ModuleServiceProvider
      */
     protected $defer = false;
 
-    /*
-     * Where are the models located
-     */
-    protected $modelFolder = 'Entities';
-
     /**
      * Boot the application events.
      *
@@ -26,7 +21,6 @@ class DevelServiceProvider extends ModuleServiceProvider
      */
     public function boot()
     {
-        $this->registerModelSlugs(__DIR__.'/../'.$this->modelFolder);
         $this->registerTranslations();
         $this->registerConfig();
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'devel');
