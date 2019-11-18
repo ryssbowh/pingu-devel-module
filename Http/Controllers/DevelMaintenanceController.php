@@ -25,8 +25,8 @@ class DevelMaintenanceController extends BaseController
     {
         $message = $this->request->post()['message'];
         $retryAfter = $this->request->post()['retryAfter'];
-        if(!$message) $message = config('core.maintenance.message');
-        if(!$retryAfter) $retryAfter = config('core.maintenance.retryAfter');
+        if(!$message) $message = config('devel.maintenance.message');
+        if(!$retryAfter) $retryAfter = config('devel.maintenance.retryAfter');
         \Artisan::call('down',['--message' => $message, '--retry' => $retryAfter]);
         \Notify::success('Maintenance mode turned on');
         return redirect()->route('devel.admin.maintenance');

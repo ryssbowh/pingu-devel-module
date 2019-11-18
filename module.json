@@ -3,12 +3,14 @@
     "alias": "devel",
     "description": "Development helpers",
     "keywords": [],
-    "order": 10,
+    "order": 0,
     "core": 0,
     "providers": [
         "Pingu\\Devel\\Providers\\DevelServiceProvider"
     ],
-    "aliases": {},
+    "aliases": {
+        "FormCollector": "Pingu\\Devel\\Facades\\FormCollector"
+    },
     "files": [
         "functions.php"
     ],

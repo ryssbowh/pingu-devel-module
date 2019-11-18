@@ -3,7 +3,10 @@
 namespace Pingu\Devel\Providers;
 
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Routing\Router;
 use Pingu\Core\Support\ModuleServiceProvider;
+use Pingu\Devel\Collectors\FormCollector;
+use Pingu\Devel\Http\Middlewares\CheckForMaintenanceMode;
 
 class DevelServiceProvider extends ModuleServiceProvider
 {
@@ -19,13 +22,15 @@ class DevelServiceProvider extends ModuleServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
+        $router->pushMiddlewareToGroup('web', CheckForMaintenanceMode::class);
+        $router->pushMiddlewareToGroup('ajax', CheckForMaintenanceMode::class);
         $this->registerTranslations();
         $this->registerConfig();
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'devel');
         $this->registerFactories();
-        // $this->registerAssets();
+        \Asset::container('modules')->add('devel-js', 'module-assets/Devel.js');
     }
 
     /**
@@ -47,6 +52,11 @@ class DevelServiceProvider extends ModuleServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
+        $formCollector = new FormCollector;
+        $this->app->singleton('devel.formCollector', function () use ($formCollector) {
+            return $formCollector;
+        });
+        // \DebugBar::addCollector($formCollector);
     }
 
     /**
