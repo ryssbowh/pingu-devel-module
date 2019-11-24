@@ -35,7 +35,7 @@ class MaintenanceModeOnForm extends Form
             new Submit(
                 'submit',
                 [
-                    'label' => 'Turn maintenance mode off'
+                    'label' => 'Turn maintenance mode on'
                 ]
             )
         ];

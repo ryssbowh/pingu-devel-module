@@ -10,10 +10,9 @@ class DevelMaintenanceController extends BaseController
 {
     public function index()
     {
-        if(app()->isDownForMaintenance()){
+        if (app()->isDownForMaintenance()) {
             $form = new MaintenanceModeOffForm();
-        }
-        else $form = new MaintenanceModeOnForm();
+        } else $form = new MaintenanceModeOnForm();
 
         return view('devel::maintenance')->with([
             'form' => $form,
