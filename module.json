@@ -9,7 +9,8 @@
         "Pingu\\Devel\\Providers\\DevelServiceProvider"
     ],
     "aliases": {
-        "FormCollector": "Pingu\\Devel\\Facades\\FormCollector"
+        "FormCollector": "Pingu\\Devel\\Facades\\FormCollector",
+        "Cron": "Pingu\\Devel\\Facades\\Cron"
     },
     "files": [
         "functions.php"

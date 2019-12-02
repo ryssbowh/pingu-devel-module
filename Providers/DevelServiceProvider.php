@@ -2,10 +2,12 @@
 
 namespace Pingu\Devel\Providers;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Routing\Router;
 use Pingu\Core\Support\ModuleServiceProvider;
 use Pingu\Devel\Collectors\FormCollector;
+use Pingu\Devel\Cron;
 use Pingu\Devel\Http\Middlewares\CheckForMaintenanceMode;
 
 class DevelServiceProvider extends ModuleServiceProvider
@@ -49,6 +51,9 @@ class DevelServiceProvider extends ModuleServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('devel.cron', function ($app) {
+            return new Cron($app->make(Schedule::class));
+        });
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
