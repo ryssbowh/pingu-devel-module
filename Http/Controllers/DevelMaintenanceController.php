@@ -12,21 +12,26 @@ class DevelMaintenanceController extends BaseController
     {
         if (app()->isDownForMaintenance()) {
             $form = new MaintenanceModeOffForm();
-        } else $form = new MaintenanceModeOnForm();
+        } else { $form = new MaintenanceModeOnForm();
+        }
 
-        return view('devel::maintenance')->with([
+        return view('devel::maintenance')->with(
+            [
             'form' => $form,
             'maintenanceOff' => app()->isDownForMaintenance()
-        ]);
+            ]
+        );
     }
 
     public function maintenanceModeOn()
     {
         $message = $this->request->post()['message'];
         $retryAfter = $this->request->post()['retryAfter'];
-        if(!$message) $message = config('devel.maintenance.message');
-        if(!$retryAfter) $retryAfter = config('devel.maintenance.retryAfter');
-        \Artisan::call('down',['--message' => $message, '--retry' => $retryAfter]);
+        if(!$message) { $message = config('devel.maintenance.message');
+        }
+        if(!$retryAfter) { $retryAfter = config('devel.maintenance.retryAfter');
+        }
+        \Artisan::call('down', ['--message' => $message, '--retry' => $retryAfter]);
         \Notify::success('Maintenance mode turned on');
         return redirect()->route('devel.admin.maintenance');
     }

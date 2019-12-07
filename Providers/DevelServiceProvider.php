@@ -51,16 +51,20 @@ class DevelServiceProvider extends ModuleServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('devel.cron', function ($app) {
-            return new Cron($app->make(Schedule::class));
-        });
+        $this->app->singleton(
+            'devel.cron', function ($app) {
+                return new Cron($app->make(Schedule::class));
+            }
+        );
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
         $formCollector = new FormCollector;
-        $this->app->singleton('devel.formCollector', function () use ($formCollector) {
-            return $formCollector;
-        });
+        $this->app->singleton(
+            'devel.formCollector', function () use ($formCollector) {
+                return $formCollector;
+            }
+        );
         // \DebugBar::addCollector($formCollector);
     }
 

@@ -17,27 +17,33 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
     {
         $perm = Permission::findOrCreate(['name' => 'view routes', 'section' => 'Devel']);
         $menu = Menu::findByMachineName('admin-menu');
-        $item = MenuItem::create([
+        $item = MenuItem::create(
+            [
             'name' => 'Devel',
             'active' => 1,
             'deletable' => 0
-        ], $menu);
+            ], $menu
+        );
 
-        $item2 = MenuItem::create([
+        $item2 = MenuItem::create(
+            [
             'name' => 'Routes',
             'deletable' => 0,
             'active' => 1,
             'permission_id' => $perm->id,
             'url' => 'devel.admin.routes'
-        ], $menu, $item);
+            ], $menu, $item
+        );
         $perm = Permission::findOrCreate(['name' => 'put site in maintenance mode', 'section' => 'Devel']);
-        $item2 = MenuItem::create([
+        $item2 = MenuItem::create(
+            [
             'name' => 'Maintenance',
             'deletable' => 0,
             'active' => 1,
             'permission_id' => $perm->id,
             'url' => 'devel.admin.maintenance'
-        ], $menu, $item);
+            ], $menu, $item
+        );
     }
 
     /**
@@ -45,19 +51,19 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
      */
     public function down(): void
     {
-        if($item = MenuItem::where('machineName', 'admin-menu.devel.maintenance')->first()){
+        if($item = MenuItem::where('machineName', 'admin-menu.devel.maintenance')->first()) {
             $item->delete();
         }
-        if($item = MenuItem::where('machineName', 'admin-menu.devel.routes')->first()){
+        if($item = MenuItem::where('machineName', 'admin-menu.devel.routes')->first()) {
             $item->delete();
         }
-        if($item = MenuItem::where('machineName', 'admin-menu.devel')->first()){
+        if($item = MenuItem::where('machineName', 'admin-menu.devel')->first()) {
             $item->delete();
         }
-        if($perm = Permission::where('name', 'view routes')->first()){
+        if($perm = Permission::where('name', 'view routes')->first()) {
             $perm->delete();
         }
-        if($perm = Permission::where('name', 'put site in maintenance mode')->first()){
+        if($perm = Permission::where('name', 'put site in maintenance mode')->first()) {
             $perm->delete();
         }
     }

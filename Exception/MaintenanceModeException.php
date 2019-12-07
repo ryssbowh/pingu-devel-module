@@ -9,7 +9,7 @@ class MaintenanceModeException extends \Illuminate\Foundation\Http\Exceptions\Ma
     /**
      * Create a new exception instance.
      *
-     * @param                 $time
+     * @param $time
      * @param null            $retryAfter
      * @param null            $message
      * @param null            $view
@@ -24,7 +24,7 @@ class MaintenanceModeException extends \Illuminate\Foundation\Http\Exceptions\Ma
     /**
      * Build a response for Laravel to show
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function toResponse($request)
