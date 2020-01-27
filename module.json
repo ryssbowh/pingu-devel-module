@@ -6,6 +6,7 @@
     "order": 0,
     "core": 0,
     "providers": [
+        "Barryvdh\\Debugbar\\ServiceProvider",
         "Pingu\\Devel\\Providers\\DevelServiceProvider"
     ],
     "aliases": {

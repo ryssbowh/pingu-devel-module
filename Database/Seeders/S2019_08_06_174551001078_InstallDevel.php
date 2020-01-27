@@ -16,6 +16,12 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
     public function run(): void
     {
         $perm = Permission::findOrCreate(['name' => 'view routes', 'section' => 'Devel']);
+        Permission::findOrCreate(['name' => 'view debug bar', 'section' => 'Core', 'helper' => 'This should only be for developers']);
+        $perm2 = Permission::findOrCreate(['name' => 'view site in maintenance mode', 'section' => 'Core', 'helper' => 'Login will always be available in maintenance mode']);
+        $perm3 = Permission::findOrCreate(['name' => 'put site in maintenance mode', 'section' => 'Devel']);
+        $admin = Role::findByName('Admin');
+        $admin->givePermissionTo([$perm, $perm2, $perm3]);
+        
         $menu = Menu::findByMachineName('admin-menu');
         $item = MenuItem::create(
             [
@@ -25,7 +31,7 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
             ], $menu
         );
 
-        $item2 = MenuItem::create(
+        MenuItem::create(
             [
             'name' => 'Routes',
             'deletable' => 0,
@@ -34,13 +40,12 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
             'url' => 'devel.admin.routes'
             ], $menu, $item
         );
-        $perm = Permission::findOrCreate(['name' => 'put site in maintenance mode', 'section' => 'Devel']);
-        $item2 = MenuItem::create(
+        MenuItem::create(
             [
             'name' => 'Maintenance',
             'deletable' => 0,
             'active' => 1,
-            'permission_id' => $perm->id,
+            'permission_id' => $perm2->id,
             'url' => 'devel.admin.maintenance'
             ], $menu, $item
         );
@@ -64,6 +69,12 @@ class S2019_08_06_174551001078_InstallDevel extends MigratableSeeder
             $perm->delete();
         }
         if($perm = Permission::where('name', 'put site in maintenance mode')->first()) {
+            $perm->delete();
+        }
+        if($perm = Permission::where('name', 'view site in maintenance mode')->first()) {
+            $perm->delete();
+        }
+        if($perm = Permission::where('name', 'view debug bar')->first()) {
             $perm->delete();
         }
     }

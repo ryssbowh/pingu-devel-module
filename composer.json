@@ -18,6 +18,9 @@
             }
         }
     },
+    "require": {
+        "barryvdh/laravel-debugbar": "^3.2"
+    },
     "autoload": {
         "psr-4": {
             "Pingu\\Devel\\": ""

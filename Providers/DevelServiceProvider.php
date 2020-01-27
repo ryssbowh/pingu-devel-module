@@ -8,6 +8,7 @@ use Illuminate\Routing\Router;
 use Pingu\Core\Support\ModuleServiceProvider;
 use Pingu\Devel\Collectors\FormCollector;
 use Pingu\Devel\Cron;
+use Pingu\Devel\Http\Middlewares\ActivateDebugBar;
 use Pingu\Devel\Http\Middlewares\CheckForMaintenanceMode;
 
 class DevelServiceProvider extends ModuleServiceProvider
@@ -26,6 +27,7 @@ class DevelServiceProvider extends ModuleServiceProvider
      */
     public function boot(Router $router)
     {
+        $router->pushMiddlewareToGroup('web', ActivateDebugBar::class);
         $router->pushMiddlewareToGroup('web', CheckForMaintenanceMode::class);
         $router->pushMiddlewareToGroup('ajax', CheckForMaintenanceMode::class);
         $this->registerTranslations();
