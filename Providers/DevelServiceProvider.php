@@ -80,6 +80,9 @@ class DevelServiceProvider extends ModuleServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../Config/config.php', 'devel'
         );
+        $this->publishes([
+            __DIR__.'/../Config/config.php' => config_path('module-devel.php')
+        ], 'config');
     }
 
     /**

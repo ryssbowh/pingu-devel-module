@@ -33,9 +33,6 @@ class CheckForMaintenanceMode
         $usableRoute = ($route->getName() and in_array($route->getName(), config('devel.maintenance.usableRoutes')));
         $hasPerm = \Permissions::getPermissionableModel()->hasPermissionTo('view site in maintenance mode');
 
-        // dump($route->getName());
-        // dump($hasPerm);
-
         if ($this->app->isDownForMaintenance() and !$usableRoute and !$hasPerm) {
             $data = json_decode(file_get_contents($this->app->storagePath().'/framework/down'), true);
 
