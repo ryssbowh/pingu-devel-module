@@ -11,7 +11,7 @@ class DevelRoutesController extends JsGridController
     public function listRoutes()
     {
         $jsGridOptions = $this->buildJsGridView();
-        return view('devel::routes')->with(
+        return view('devel@routes')->with(
             [
             'jsgrid' => $jsGridOptions
             ]

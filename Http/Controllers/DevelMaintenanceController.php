@@ -15,7 +15,7 @@ class DevelMaintenanceController extends BaseController
         } else { $form = new MaintenanceModeOnForm();
         }
 
-        return view('devel::maintenance')->with(
+        return view('devel@maintenance')->with(
             [
             'form' => $form,
             'maintenanceOff' => app()->isDownForMaintenance()
