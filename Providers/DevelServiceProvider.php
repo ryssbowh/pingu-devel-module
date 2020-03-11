@@ -81,8 +81,8 @@ class DevelServiceProvider extends ModuleServiceProvider
             __DIR__.'/../Config/config.php', 'devel'
         );
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('module-devel.php')
-        ], 'config');
+            __DIR__.'/../Config/config.php' => config_path('devel.php')
+        ], 'devel-config');
     }
 
     /**
