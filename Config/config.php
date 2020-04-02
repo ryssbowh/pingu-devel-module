@@ -11,5 +11,5 @@ return [
         'message' => 'This site is in maintenance, please try again later',
         'usableRoutes' => ['user.login', 'user.logout', 'user.showLoginForm']
     ],
-    'showViewNames' => true
+    'showViewNames' => env('APP_DEBUG', false)
 ];

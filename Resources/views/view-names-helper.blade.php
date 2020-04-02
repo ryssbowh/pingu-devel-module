@@ -1,3 +1,3 @@
 @foreach($views as $view)
-    <!-- {{ $view }} @if($view == $current) (current) @endif -->
+    <!-- view hint : {{ $view }} @if($view == $current) (current) @endif -->
 @endforeach
